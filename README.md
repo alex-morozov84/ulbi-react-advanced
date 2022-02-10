@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+**\_ Проект на основе [ролика](https://www.youtube.com/watch?v=ElaIKk8ba5g) Ульби на `Youtube` \_**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](https://github.com/alex-morozov84/ulbi-react-advanced/blob/master/screenshot.png)
 
-## Available Scripts
+Содержание:
 
-In the project directory, you can run:
+1. Описание проекта
+2. Интересные моменты
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 1. Описание проекта
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Тестовое задание на `middle`-разработчика с использованием стека `React-TypeScript-Redux-AntDesign`. Реализовано приложение с авторизацией. В качестве БД используется `JSON`-файл в папке `public`. Такж для авторизации и хранения данных при перезагрузке приложения вместо БД используется `LocalStorage`. Само приложение представляет собой календарь, созданный при помощи `AntDesign`, а также кнопка, вызывающую модальное окно с возможностью создания нового события. После создания событие отображается в соответствующей ячейке календаря и для соответстующего пользователя.
 
-### `npm test`
+Для работы с датами в проложении используется библиотека `Moment JS`, т.к. она же используется в компонентах `AntDesign`, использующих даты.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Замечание: в видео показано как создавать роутинг при помощи 5й версии `React-Router`. На момент создания приложения уже вышла 6я версия, поэтому я переделал все на нее по документации.
 
-### `npm run build`
+# 2. Интересные моменты
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- redux
+  В проекте сформирована правильная структура типизированного `redux`. Созданы необходимые типы и хуки. Реализовано много редьюсеров, в том числе асинхронных.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- rules
+  В папке `utils` создан файл `rules.ts`. В нем прописаны объекты для валидации формы `LoginForm`. Можно использовать такой подход в своих проектах.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- типизация
+  Типы данных в проекте разнесены по разным папкам. Например, типы всех сущностей находятся в папке `models`, а типы, относящиеся к `redux` находятся в соответсвующих подпапках в `store`.
 
-### `npm run eject`
+- сервисы
+  Простейший способо создания сервиса для получения данных находится в папке `api`. Интеренсый момент, помимо всего, заключается в том, что используется статичная функция, для того, чтобы можно было вызывать ее без создания экземпляра класса.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Перенести в свой проект:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Роутинг
+  Новая версия `React-Router`. Поэтому код не совпадает с Ульби. Пришлось почитать документацию
+  Создание интерфейса для роутера в `router/index.tsx`(08:50), словарь с маршрутами (enum) там же (10:07).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- rules
+  В папке utils создан файл rules.ts. В нем прописаны объекты для валидации формы LoginForm. Можно сделать также, например, для валидации формы регистрации пользователя
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- модели
+  Поместить типы сущностей в папку models, типы redux в его папку и т.д.
